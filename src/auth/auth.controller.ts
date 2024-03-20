@@ -1,6 +1,7 @@
 import { Controller, Ip, Post } from '@nestjs/common';
 import { Public } from 'common/decorators';
 import { Fingerprint, IFingerprint, RealIp } from 'nestjs-fingerprint';
+import { RealIP } from 'nestjs-real-ip';
 
 @Public()
 @Controller('auth')
@@ -9,8 +10,14 @@ export class AuthController {
   getMe(
     @RealIp() ip: string,
     @Ip() ip2: string,
-    @Fingerprint() fp: IFingerprint
-  ): IFingerprint {
-    return fp;
+    @Fingerprint() fp: IFingerprint,
+    @RealIP() ip3: string
+  ) {
+    return {
+      ip,
+      ip2,
+      ip3,
+      fp
+    }
   }
 }
