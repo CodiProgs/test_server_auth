@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   async login(dto: LoginDto) {
-    const user: User = await this.userService.findOne(dto.email, true)
+    const user: User = await this.userService.findOne(dto.email, true).catch((_) => { throw new BadRequestException('There is no account with this email') })
     if (!(await bcrypt.compare(dto.password, user.password))) {
       throw new BadRequestException('Wrong email or password')
     }
@@ -33,7 +33,7 @@ export class AuthService {
 
   async generateTokens(user: User, token: { ip: string, userAgent: string }) {
     const accessToken = await this.jwtService.signAsync({ id: user.id, email: user.email, roles: user.roles })
-    const refreshToken = await this.getRefreshToken(token, user.id) // error
+    const refreshToken = await this.getRefreshToken(token, user.id)
 
     return { accessToken, refreshToken }
   }

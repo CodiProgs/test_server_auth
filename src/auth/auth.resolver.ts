@@ -28,7 +28,7 @@ export class AuthResolver {
     @UserIp('ip') ip: string,
     @UserAgent('user-agent') userAgent: string,
   ) {
-    const user = await this.authService.login(dto);
+    const user = await this.authService.login(dto)
     const tokens = await this.authService.generateTokens(user, { ip, userAgent });
 
     await this.authService.setRefreshTokenToCookie(tokens.refreshToken, context.res)
