@@ -39,6 +39,7 @@
     "class-validator": "^0.14.1",
     "cookie-parser": "^1.4.6",
     "date-fns": "^3.5.0",
+    "device-detector-js": "^3.0.3",
     "graphql": "^16.8.1",
     "graphql-upload": "^16.0.2",
     "graphql-upload-ts": "^2.1.2",
