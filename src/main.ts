@@ -37,6 +37,6 @@ async function bootstrap() {
     })
   )
   app.useGlobalFilters(new GraphQLErrorFilter());
-  await app.listen(process.env.PORT, '0.0.0.0');
+  await app.listen(process.env.PORT || 3000, '0.0.0.0');
 }
 bootstrap();
