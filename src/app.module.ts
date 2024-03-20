@@ -10,6 +10,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards';
 import { PrismaModule } from './prisma/prisma.module';
 import { FileModule } from './file/file.module';
+import { NestjsFingerprintModule } from 'nestjs-fingerprint';
 
 @Module({
   imports: [
@@ -25,6 +26,9 @@ import { FileModule } from './file/file.module';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
       serveRoot: '/'
+    }),
+    NestjsFingerprintModule.forRoot({
+      params: ['headers', 'userAgent', 'ipAddress'],
     }),
     AuthModule,
     UserModule,

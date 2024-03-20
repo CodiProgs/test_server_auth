@@ -24,8 +24,8 @@ export class AuthService {
   }
 
   async login(dto: LoginDto) {
-    const user: User = await this.userService.findOne(dto.email, true).catch((_) => { throw new BadRequestException('There is no account with this email') })
-    if (!(await bcrypt.compare(dto.password, user.password))) {
+    const user: User = await this.userService.findOne(dto.email, true)
+    if (!user || !(await bcrypt.compare(dto.password, user.password))) {
       throw new BadRequestException('Wrong email or password')
     }
     return user;

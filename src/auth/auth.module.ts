@@ -7,9 +7,11 @@ import { GUARDS } from './guards';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { FileModule } from 'src/file/file.module';
 import { options } from './config/jwt-module-async-option';
+import { AuthController } from './auth.controller';
 
 @Module({
   providers: [AuthService, AuthResolver, ...GUARDS, JwtStrategy],
   imports: [UserModule, JwtModule.registerAsync(options()), FileModule],
+  controllers: [AuthController],
 })
 export class AuthModule { }
