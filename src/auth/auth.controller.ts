@@ -14,10 +14,9 @@ export class AuthController {
     @RealIP() ip3: string
   ) {
     return {
-      ip,
-      ip2,
+      // ip,
+      // ip2,
       ip3,
-      fp
     }
   }
 }
